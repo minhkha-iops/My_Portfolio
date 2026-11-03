@@ -1,0 +1,368 @@
+$font-primary: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+$color-text: #1a1a1a;
+$color-bg: #fdfdfd;
+$color-border: #1a1a1a;
+$color-gradient: linear-gradient(to bottom, #cfd3d8, #a2a6ad);
+$border-radius-pill: 25px;
+
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+@mixin nav-button {
+  padding: 8px 24px;
+  border: 1.5px solid $color-border;
+  border-radius: $border-radius-pill;
+  text-decoration: none;
+  color: $color-text;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background-color: transparent;
+
+  &:hover {
+    background-color: #eee;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-primary;
+  background-color: $color-bg;
+  color: $color-text;
+  line-height: 1.6;
+  padding: 1rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// HEADER
+header {
+  padding: 1rem 0 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h1 {
+    display: none;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+
+    a {
+      @include nav-button;
+
+      &:nth-child(1) {
+        background: $color-gradient;
+      }
+
+      &:last-child {
+        margin-left: auto;
+        border: none;
+        background: none;
+        font-size: 1.25rem;
+        font-weight: 800;
+        padding-right: 0;
+
+        &:hover {
+          background-color: transparent;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// HERO SECTION
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 4rem;
+
+  .hero-content {
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    .btn {
+      @include nav-button;
+      background: $color-text;
+      color: $color-bg;
+      border-radius: 8px;
+    }
+  }
+
+  .hero-image {
+    max-width: 400px;
+  }
+}
+
+// CÁC SECTION CHUNG
+section {
+  padding: 3rem 0;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+}
+
+.about,
+.Giaoduc {
+  max-width: 800px;
+  margin: 0 auto; // Căn giữa toàn khối
+  text-align: center;
+
+  h3 {
+    margin: 1rem 0;
+    font-size: 1.3rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    color: #444;
+  }
+
+  ul {
+    text-align: left;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eaeaea;
+    list-style-position: inside;
+
+    li {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f4f4f4;
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+.skills {
+  max-width: 800px;
+  margin: 0 auto;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    list-style: none;
+
+    li {
+      padding: 8px 20px;
+      background: $color-text;
+      color: $color-bg;
+      border-radius: $border-radius-pill;
+      font-weight: bold;
+    }
+  }
+}
+
+.contact {
+  address {
+    text-align: center;
+    font-style: normal;
+    margin-bottom: 2rem;
+    color: #555;
+
+    a {
+      color: #0056b3;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+
+  > p {
+    text-align: center;
+    margin-top: 2rem;
+  }
+}
+
+.formlienhe {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eaeaea;
+  max-width: 700px; // Thu gọn form lại nhìn cho cân đối
+  margin: 0 auto;
+
+  h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  form {
+    display: grid;
+    gap: 15px;
+    // Bỏ margin max-width cũ vì đã bọc trong khối .formlienhe rồi
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: inherit;
+      background-color: #fafafa;
+    }
+    button {
+      @include nav-button;
+      background: $color-text;
+      color: $color-bg;
+      cursor: pointer;
+      justify-self: center; // Căn giữa nút gửi thay vì lệch trái
+      padding: 10px 40px;
+      border-radius: 8px;
+    }
+  }
+}
+
+// PROJECT & SKILLS SECTION (Giữ nguyên)
+.project-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  .project-item {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eaeaea;
+
+    img {
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #0056b3;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+}
+
+// BẢNG HỌC TẬP (TABLE - Giữ nguyên)
+.Table-kn table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+
+  caption {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  th {
+    background-color: #f4f4f4;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  margin-top: 3rem;
+}
+
+//Breakpoint 1: Tablet
+@media (min-width: $breakpoint-tablet) {
+  .hero {
+    flex-direction: row-reverse;
+    text-align: left;
+    justify-content: center;
+    gap: 4rem;
+
+    .hero-content {
+      flex: 1;
+      max-width: 500px;
+
+      h2 {
+        font-size: 3.5rem;
+        line-height: 1.2;
+      }
+    }
+
+    .hero-image {
+      flex: 1;
+      max-width: 450px;
+    }
+  }
+  .project-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // Nâng cấp nhẹ form trên tablet: chia 2 cột họ tên và email
+  .formlienhe form {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    div:nth-child(3) {
+      grid-column: 1 / -1;
+    } // Ô tin nhắn chiếm 2 cột
+    button {
+      grid-column: 1 / -1;
+    } // Nút chiếm 2 cột để có thể căn giữa
+  }
+}
+
+// Breakpoint 2: Desktop
+@media (min-width: $breakpoint-desktop) {
+  body {
+    padding: 2rem 4rem;
+  }
+
+  .project-list {
+    gap: 30px;
+  }
+}

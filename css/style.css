@@ -336,4 +336,32 @@ footer {
   .project-list {
     gap: 30px;
   }
+}
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+body.dark-mode header nav a,
+body.dark-mode .skills ul li,
+body.dark-mode .Table-kn table th,
+body.dark-mode .Table-kn table td {
+  color: #e0e0e0;
+  border-color: #444;
+}
+body.dark-mode .formlienhe,
+body.dark-mode .project-list .project-item,
+body.dark-mode .Table-kn table,
+body.dark-mode .about ul {
+  background-color: #1e1e1e;
+  border-color: #333;
+  color: #e0e0e0;
+}
+body.dark-mode .Table-kn table th {
+  background-color: #2a2a2a;
+}
+body.dark-mode input,
+body.dark-mode textarea {
+  background-color: #2a2a2a;
+  color: #fff;
+  border-color: #444;
 }/*# sourceMappingURL=style.css.map */

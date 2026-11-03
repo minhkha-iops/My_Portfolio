@@ -90,3 +90,79 @@ document.addEventListener("DOMContentLoaded", () => {
   renderSkills();
   handleFormSubmit();
 });
+
+const fetchAndRenderProjects = async () => {
+  const projectContainer = document.getElementById("project-list-container");
+
+  if (!projectContainer) return;
+
+  try {
+    // Gọi dữ liệu từ file JSON cục bộ
+    const response = await fetch("js/data.json");
+
+    // Ném lỗi nếu đường dẫn sai hoặc file không tồn tại
+    if (!response.ok) {
+      throw new Error(`Lỗi HTTP: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    // Biến đổi dữ liệu thành các thẻ HTML tương ứng
+    const projectsHTML = data
+      .map(
+        (project) => `
+            <div class="project-item">
+                <h3>Dự án: ${project.ten}</h3>
+                <p><strong>Công nghệ:</strong> ${project.congNghe}</p>
+                <p><strong>Năm:</strong> ${project.namHoanThanh}</p>
+            </div>
+        `,
+      )
+      .join("");
+
+    // Hiển thị ra màn hình
+    projectContainer.innerHTML = projectsHTML;
+  } catch (error) {
+    // Bắt lỗi: in ra console và thông báo cho người dùng thay vì crash web
+    console.error("Lỗi khi tải dữ liệu dự án:", error);
+    projectContainer.innerHTML = `<p style="color: red;">Không thể tải danh sách dự án. Vui lòng thử lại sau.</p>`;
+  }
+};
+
+// 3. Sử dụng LocalStorage cho tính năng Chế độ Sáng/Tối (Dark Mode)
+const setupThemeToggle = () => {
+  const themeToggleButton = document.getElementById("theme-toggle");
+  const bodyElement = document.body;
+
+  if (!themeToggleButton) return;
+
+  // Kiểm tra trạng thái đã lưu trong LocalStorage khi trang vừa tải
+  const currentTheme = localStorage.getItem("theme");
+  if (currentTheme === "dark") {
+    bodyElement.classList.add("dark-mode");
+    themeToggleButton.textContent = "Chế độ Sáng";
+  }
+
+  // Xử lý sự kiện khi người dùng click vào nút
+  themeToggleButton.addEventListener("click", () => {
+    // Bật/tắt class 'dark-mode'
+    bodyElement.classList.toggle("dark-mode");
+
+    // Cập nhật lại LocalStorage và text hiển thị
+    if (bodyElement.classList.contains("dark-mode")) {
+      localStorage.setItem("theme", "dark");
+      themeToggleButton.textContent = "Chế độ Sáng";
+    } else {
+      localStorage.setItem("theme", "light");
+      themeToggleButton.textContent = "Chế độ Tối";
+    }
+  });
+};
+// Gọi các hàm khi tài liệu HTML đã được tải xong
+document.addEventListener("DOMContentLoaded", () => {
+  renderSkills();
+  handleFormSubmit();
+
+  fetchAndRenderProjects();
+  setupThemeToggle();
+});
